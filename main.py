@@ -51,6 +51,7 @@ def click_reserve(driver, i:int):
 
 if __name__ == '__main__':
     driver = make_browser(START_URL)
+    driver.implicitly_wait(0)
 
     # driver.execute_script("window.open()")
     # driver.switch_to.window(driver.window_handles[1])
@@ -64,7 +65,8 @@ if __name__ == '__main__':
         click_reserve(driver, SITE_TO_RESERVE)
         if wait_and_get_elements(driver, r'//app-reserve-restriction-dialog', 3, until=EC.visibility_of_element_located):
             #close = driver.find_element(By.XPATH, r'//app-reserve-restriction-dialog//button')
-            close = wait_and_get_elements(driver, r'//app-reserve-restriction-dialog//button', 10, until=EC.element_to_be_clickable)
+            #close = wait_and_get_elements(driver, r'//app-reserve-restriction-dialog//button', 10, until=EC.element_to_be_clickable)
+            close = wait_and_get_elements(driver, r'//app-reserve-restriction-dialog//button', 10)
             if close:
                 close[0].click()
                 print('RESTRICTED')
